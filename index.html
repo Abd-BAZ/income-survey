@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2QKPENXGGP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2QKPENXGGP');
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MQ22DMMK');</script>
+    <!-- End Google Tag Manager -->
+    <title>Income Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .survey-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .question input, .question select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .submit-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MQ22DMMK"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="survey-container">
+        <h1>Income Survey</h1>
+        <form action="#">
+            <div class="question">
+                <label for="incomeRange">What is your monthly income range?</label>
+                <select id="incomeRange" name="incomeRange">
+                    <option value="lessThan1000">Less than $1,000</option>
+                    <option value="1000to3000">$1,000 to $3,000</option>
+                    <option value="3000to5000">$3,000 to $5,000</option>
+                    <option value="greaterThan5000">More than $5,000</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label for="primarySource">What is your primary source of income?</label>
+                <select id="primarySource" name="primarySource">
+                    <option value="salary">Salary</option>
+                    <option value="selfEmployed">Self-employed</option>
+                    <option value="investments">Investments</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label for="savingsPercentage">What percentage of your income do you save each month?</label>
+                <input type="number" id="savingsPercentage" name="savingsPercentage" min="0" max="100" placeholder="Enter percentage (0-100)">
+            </div>
+
+            <div class="question">
+                <label for="financialGoals">What is your primary financial goal for the next 5 years?</label>
+                <input type="text" id="financialGoals" name="financialGoals" placeholder="e.g., buying a house, saving for retirement, etc.">
+            </div>
+
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>
