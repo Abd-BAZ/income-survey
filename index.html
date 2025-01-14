@@ -110,6 +110,29 @@
             <button type="submit" class="submit-button">Submit</button>
         </form>
     </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyAkx_wrkA7MML2eVIiIL9zpT7l0qW_p-LU",
+          authDomain: "income-survey-ad84f.firebaseapp.com",
+          projectId: "income-survey-ad84f",
+          storageBucket: "income-survey-ad84f.firebasestorage.app",
+          messagingSenderId: "342923539557",
+          appId: "1:342923539557:web:04d7a54281a9c6376e028c",
+          measurementId: "G-RVEYRGQD09"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
 
 </body>
 </html>
