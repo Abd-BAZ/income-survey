@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2QKPENXGGP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2QKPENXGGP');
-</script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TCQLM5VG');</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QKPENXGGP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-2QKPENXGGP');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TCQLM5VG');
+    </script>
     <!-- End Google Tag Manager -->
     <title>Income Survey - Part 2</title>
     <style>
@@ -83,9 +83,10 @@
     </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCQLM5VG"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCQLM5VG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <div class="survey-container">
@@ -126,17 +127,48 @@
         <a href="assets/pdf/Survey-Summary-Part2.pdf" download class="download-link">Survey-Summary-Part2.PDF</a>
     </div>
 
+    <!-- Firebase Initialization -->
     <script type="module">
-        // Handle form submission for Part 2
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAkx_wrkA7MML2eVIiIL9zpT7l0qW_p-LU",
+            authDomain: "income-survey-ad84f.firebaseapp.com",
+            projectId: "income-survey-ad84f",
+            storageBucket: "income-survey-ad84f.appspot.com",
+            messagingSenderId: "342923539557",
+            appId: "1:342923539557:web:04d7a54281a9c6376e028c",
+            measurementId: "G-2QKPENXGGP"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        // Handle form submission
         const surveyForm2 = document.getElementById('surveyForm2');
         surveyForm2.addEventListener('submit', (e) => {
             e.preventDefault(); // Prevent form from refreshing the page
 
-            // Simulating form submission (add your logic here)
+            // Capture form data
+            const additionalIncome = document.getElementById('additionalIncome').value;
+            const monthlyExpenses = document.getElementById('monthlyExpenses').value;
+            const investmentPercentage = document.getElementById('investmentPercentage').value;
+            const financialAdvice = document.getElementById('financialAdvice').value;
+
+            // Log event to Firebase Analytics
+            logEvent(analytics, 'survey_part_2_submission', {
+                additionalIncome,
+                monthlyExpenses,
+                investmentPercentage,
+                financialAdvice
+            });
+
             alert('Survey Part 2 submitted successfully!');
             surveyForm2.reset(); // Reset the form
         });
     </script>
-
 </body>
 </html>
+
