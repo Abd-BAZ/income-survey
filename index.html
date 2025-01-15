@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2QKPENXGGP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QKPENXGGP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'G-2QKPENXGGP');
-</script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TCQLM5VG');</script>
+        gtag('config', 'G-2QKPENXGGP');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true; j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TCQLM5VG');
+    </script>
     <!-- End Google Tag Manager -->
     <title>Income Survey</title>
     <style>
@@ -54,7 +59,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        .submit-button {
+        .next-button {
             padding: 10px 20px;
             background-color: #4CAF50;
             color: white;
@@ -63,29 +68,17 @@
             cursor: pointer;
             font-size: 16px;
         }
-        .submit-button:hover {
+        .next-button:hover {
             background-color: #45a049;
-        }
-        .download-link {
-            display: block;
-            margin-top: 20px;
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 16px;
-        }
-        .download-link:hover {
-            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCQLM5VG"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCQLM5VG"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <div class="survey-container">
@@ -121,49 +114,36 @@
                 <input type="text" id="financialGoals" name="financialGoals" placeholder="e.g., buying a house, saving for retirement, etc.">
             </div>
 
-            <button type="submit" class="submit-button">Submit</button>
+            <button type="button" id="nextButton" class="next-button">Next</button>
         </form>
-
-        <!--PDF Download Link-->
-        <a href="assets/pdf/Survey-Summary.pdf" download class="download-link">Survey-Summary.PDF</a>
     </div>
 
     <script type="module">
-        // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
-        // Your web app's Firebase configuration
         const firebaseConfig = {
-          apiKey: "AIzaSyAkx_wrkA7MML2eVIiIL9zpT7l0qW_p-LU",
-          authDomain: "income-survey-ad84f.firebaseapp.com",
-          projectId: "income-survey-ad84f",
-          storageBucket: "income-survey-ad84f.firebasestorage.app",
-          messagingSenderId: "342923539557",
-          appId: "1:342923539557:web:04d7a54281a9c6376e028c",
-          measurementId: "G-RVEYRGQD09"
+            apiKey: "AIzaSyAkx_wrkA7MML2eVIiIL9zpT7l0qW_p-LU",
+            authDomain: "income-survey-ad84f.firebaseapp.com",
+            projectId: "income-survey-ad84f",
+            storageBucket: "income-survey-ad84f.firebasestorage.app",
+            messagingSenderId: "342923539557",
+            appId: "1:342923539557:web:04d7a54281a9c6376e028c",
+            measurementId: "G-RVEYRGQD09"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
-
-        // Initialize Firestore
         const db = getFirestore(app);
 
-        // Handle form submission
-        const surveyForm = document.getElementById('surveyForm');
-        surveyForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Prevent the form from refreshing the page
-
-            // Get form data
+        const nextButton = document.getElementById('nextButton');
+        nextButton.addEventListener('click', async () => {
             const incomeRange = document.getElementById('incomeRange').value;
             const primarySource = document.getElementById('primarySource').value;
             const savingsPercentage = document.getElementById('savingsPercentage').value;
             const financialGoals = document.getElementById('financialGoals').value;
 
-            // Add the survey data to Firestore
             try {
                 await addDoc(collection(db, "surveyResponses"), {
                     incomeRange,
@@ -172,15 +152,14 @@
                     financialGoals,
                     timestamp: new Date()
                 });
-                alert('Survey submitted successfully!');
-                surveyForm.reset(); // Reset the form
+                window.location.href = "second_page.html"; // Redirect to the second page
             } catch (error) {
                 console.error('Error adding document: ', error);
                 alert('Error submitting survey. Please try again.');
             }
         });
     </script>
-
 </body>
 </html>
+
 

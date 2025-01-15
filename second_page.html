@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2QKPENXGGP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2QKPENXGGP');
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TCQLM5VG');</script>
+    <!-- End Google Tag Manager -->
+    <title>Income Survey - Part 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .survey-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .question input, .question select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .submit-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+        .download-link {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .download-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCQLM5VG"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="survey-container">
+        <h1>Income Survey - Part 2</h1>
+        <form id="surveyForm2">
+            <div class="question">
+                <label for="additionalIncome">Do you have any additional sources of income?</label>
+                <select id="additionalIncome" name="additionalIncome">
+                    <option value="no">No</option>
+                    <option value="freelancing">Freelancing</option>
+                    <option value="rental">Rental income</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label for="monthlyExpenses">What is your average monthly expense?</label>
+                <input type="number" id="monthlyExpenses" name="monthlyExpenses" placeholder="Enter amount in USD">
+            </div>
+
+            <div class="question">
+                <label for="investmentPercentage">What percentage of your income do you invest monthly?</label>
+                <input type="number" id="investmentPercentage" name="investmentPercentage" min="0" max="100" placeholder="Enter percentage (0-100)">
+            </div>
+
+            <div class="question">
+                <label for="financialAdvice">Have you sought financial advice in the past year?</label>
+                <select id="financialAdvice" name="financialAdvice">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+
+        <!--PDF Download Link-->
+        <a href="assets/pdf/Survey-Summary-Part2.pdf" download class="download-link">Survey-Summary-Part2.PDF</a>
+    </div>
+
+    <script type="module">
+        // Handle form submission for Part 2
+        const surveyForm2 = document.getElementById('surveyForm2');
+        surveyForm2.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent form from refreshing the page
+
+            // Simulating form submission (add your logic here)
+            alert('Survey Part 2 submitted successfully!');
+            surveyForm2.reset(); // Reset the form
+        });
+    </script>
+
+</body>
+</html>
