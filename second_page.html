@@ -130,8 +130,9 @@
     <!-- Firebase Initialization -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-        import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
-
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+    
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAkx_wrkA7MML2eVIiIL9zpT7l0qW_p-LU",
             authDomain: "income-survey-ad84f.firebaseapp.com",
@@ -141,34 +142,41 @@
             appId: "1:342923539557:web:04d7a54281a9c6376e028c",
             measurementId: "G-2QKPENXGGP"
         };
-
+    
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-
+        const db = getFirestore(app); // Initialize Firestore
+    
         // Handle form submission
         const surveyForm2 = document.getElementById('surveyForm2');
-        surveyForm2.addEventListener('submit', (e) => {
+        surveyForm2.addEventListener('submit', async (e) => {
             e.preventDefault(); // Prevent form from refreshing the page
-
+    
             // Capture form data
             const additionalIncome = document.getElementById('additionalIncome').value;
             const monthlyExpenses = document.getElementById('monthlyExpenses').value;
             const investmentPercentage = document.getElementById('investmentPercentage').value;
             const financialAdvice = document.getElementById('financialAdvice').value;
-
-            // Log event to Firebase Analytics
-            logEvent(analytics, 'survey_part_2_submission', {
-                additionalIncome,
-                monthlyExpenses,
-                investmentPercentage,
-                financialAdvice
-            });
-
-            alert('Survey Part 2 submitted successfully!');
-            surveyForm2.reset(); // Reset the form
+    
+            try {
+                // Save data to Firestore
+                await addDoc(collection(db, 'survey_part_2'), {
+                    additionalIncome,
+                    monthlyExpenses,
+                    investmentPercentage,
+                    financialAdvice,
+                    timestamp: new Date() // Add a timestamp
+                });
+    
+                alert('Survey Part 2 submitted and saved successfully!');
+                surveyForm2.reset(); // Reset the form fields
+            } catch (error) {
+                console.error('Error saving survey data: ', error);
+                alert('An error occurred while saving your responses.');
+            }
         });
     </script>
+    
 </body>
 </html>
 
