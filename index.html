@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QKPENXGGP"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RVEYRGQD09"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -82,6 +82,11 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <div class="survey-container">
+        <!--Visitor Counter Section-->
+        <div class="visitor-counter">
+            <h2>Visitors on Site:</h2>
+            <p id="visitorCount">Loading...</p>
+        </div>
         <h1>Income Survey/Questionnaire</h1>
         <form id="surveyForm">
             <div class="question">
@@ -121,7 +126,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, doc, getDoc, setDoc, increment, onSnapshot } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAkx_wrkA7MML2eVIiIL9zpT7l0qW_p-LU",
@@ -136,6 +141,40 @@
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const db = getFirestore(app);
+
+        //Function to update visitor count
+        async function updateVisitorCount(){
+            const countRef = doc(db, "siteAnalytics", "visitorCount");
+
+            try{
+                const docSnapshot = await getDoc(countRef);
+                if(docSnapshot.exists()){
+                    //Incement count
+                    await setDoc(countRef, {count: increment(1)},{merge:true});
+                }
+                else{
+                    //Initialize count if the document doesn't exist
+                    await setDoc(countRef, {count:1});
+                }
+            } catch(error){
+                console.error("Error updating visitor count", error);
+            }
+        }
+
+        // Real-time listener for visitor count
+        const countRef = doc(db, "siteAnalytics", "visitorCount");
+
+        onSnapshot(countRef, (doc) => {
+            if (doc.exists()) {
+                const visitorCount = doc.data().count;
+                document.getElementById('visitorCount').textContent = visitorCount;
+            } else {
+                console.log("No visitor count found!");
+            }
+        });
+
+        //Call the function to update visitor count when the page loads
+        updateVisitorCount();
 
         const nextButton = document.getElementById('nextButton');
         nextButton.addEventListener('click', async () => {
